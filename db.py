@@ -16,7 +16,11 @@ def receivePost(request):
     body = request.get_json()
     body = json.dumps(body)
     
-    insertString = '''INSERT INTO posts (requestbody) VALUES (\'{0}\');'''.format(body)
+    remote_address = request.remote_addr
+    
+    requested_url = request.url
+    
+    insertString = '''INSERT INTO posts (requestbody, remoteaddress, requested) VALUES (\'{0}\', \'{1}\', \'{2}\');'''.format(body, remote_address, requested_url)
     print(insertString)
     
     cursor.execute(insertString)
