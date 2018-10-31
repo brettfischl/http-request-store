@@ -6,12 +6,11 @@ app = Flask(__name__)
 import db
 
 def any_response(data):
-  ALLOWED = ['http://localhost:8888', 'null']
-  response = make_response(data)
-  origin = request.headers['Origin']
-  if origin in ALLOWED:
-    response.headers['Access-Control-Allow-Origin'] = origin
-  return response
+    response = make_response(data)
+    origin = request.headers['Origin']
+
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 @app.route("/")
 def hello():
