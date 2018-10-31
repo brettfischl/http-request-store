@@ -4,22 +4,6 @@ app = Flask(__name__)
 
 import db
 
-@app.route("/")
-def hello():
-    return "Hello World!"
-
-
-@app.route('/testdb')
-def test():
-    return db.test()
-
-@app.route('/request', methods=['post'])
-@crossdomain(origin='*')
-def receivePost():
-    # data = request.data
-    return db.receivePost(request)
-
-
 def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_to_all=True, automatic_options=True):
     if methods is not None:
         methods = ', '.join(sorted(x.upper() for x in methods))
@@ -58,3 +42,19 @@ def crossdomain(origin=None, methods=None, headers=None, max_age=21600, attach_t
         f.provide_automatic_options = False
         return update_wrapper(wrapped_function, f)
     return decorator
+
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+
+@app.route('/testdb')
+def test():
+    return db.test()
+
+@app.route('/request', methods=['post'])
+@crossdomain(origin='*')
+def receivePost():
+    # data = request.data
+    return db.receivePost(request)
