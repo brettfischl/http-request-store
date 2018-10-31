@@ -1,16 +1,10 @@
 from flask import Flask
-from flask import request, make_response
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 import db
-
-def any_response(data):
-    response = make_response(data)
-    origin = request.headers['Origin']
-
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
 
 @app.route("/")
 def hello():
@@ -23,5 +17,4 @@ def test():
 
 @app.route('/request', methods=['post'])
 def receivePost():
-    # data = request.data
-    return any_response(db.receivePost(request))
+    return db.receivePost(request)
