@@ -6,7 +6,7 @@ app = Flask(__name__)
 import db
 
 def any_response(data):
-  ALLOWED = ['http://localhost:8888']
+  ALLOWED = ['http://localhost:8888', 'null']
   response = make_response(data)
   origin = request.headers['Origin']
   if origin in ALLOWED:
