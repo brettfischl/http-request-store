@@ -23,7 +23,6 @@ def test():
     return db.test()
 
 @app.route('/request', methods=['post'])
-@crossdomain(origin='*')
 def receivePost():
     # data = request.data
     return any_response(db.receivePost(request))
