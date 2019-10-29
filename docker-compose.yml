@@ -1,0 +1,34 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_URL: postgres://postgres:postgres@localhost/http_request_store
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: http_request_store
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+  app:
+    build: .
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      FLASK_APP: app/app.py
+      DATABASE_URL: postgres://postgres:postgres@localhost/http_request_store
+      DATABASE_HOST: db
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_NAME: http_request_store
+    command: ["python", "app.py"]
+      
+volumes:
+  data:
+    driver: local

@@ -18,3 +18,7 @@ def test():
 @app.route('/request', methods=['post'])
 def receivePost():
     return db.acceptPost(request)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
