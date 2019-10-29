@@ -21,7 +21,8 @@ def acceptPost(request):
 
     requested_url = request.url
 
-    insertString = '''INSERT INTO posts (requestbody, remoteaddress, requested) VALUES (\'{0}\', \'{1}\', \'{2}\');'''.format(body, remote_address, requested_url)
+    insertString = '''INSERT INTO posts (request_body, remote_address, request_url)
+    VALUES (\'{0}\', \'{1}\', \'{2}\');'''.format(body, remote_address, requested_url)
     print(insertString)
 
     cursor.execute(insertString)
