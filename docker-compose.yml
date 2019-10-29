@@ -21,7 +21,6 @@ services:
     depends_on:
       - db
     environment:
-      FLASK_APP: app/app.py
       DATABASE_URL: postgres://postgres:postgres@localhost/http_request_store
       DATABASE_HOST: db
       DATABASE_USER: postgres

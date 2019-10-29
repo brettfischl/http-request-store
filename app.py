@@ -10,15 +10,9 @@ import db
 def hello():
     return "Hello World!"
 
-
-@app.route('/testdb')
-def test():
-    return db.test()
-
 @app.route('/request', methods=['post'])
 def receivePost():
     return db.acceptPost(request)
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
