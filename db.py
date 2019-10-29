@@ -8,10 +8,6 @@ connection_string = 'dbname={0[DATABASE_NAME]} user={0[DATABASE_USER]} password=
 conn =  psycopg2.connect(connection_string)
 cursor = conn.cursor()
 
-def test():
-    print(creds())
-    return str(creds())
-
 def acceptPost(request):
     if (isinstance(request.data, (bytes, bytearray))):
         body = json.loads(request.data)
