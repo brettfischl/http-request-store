@@ -1,3 +1,9 @@
+# environments
 env/
+ENV/
+
+# editor specific ignores
 .vscode/
+
+# caches
 __pycache__/
